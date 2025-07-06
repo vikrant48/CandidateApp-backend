@@ -8,6 +8,7 @@ public class UserResponse {
     private String username;
     private String name;
     private String email;
+    private User.Role role;
     private Integer age;
     private String mobileNumber;
     private String country;
@@ -19,6 +20,7 @@ public class UserResponse {
         this.username = user.getUsername();
         this.name = user.getName();
         this.email = user.getEmail();
+        this.role = user.getRole();
         this.age = user.getAge();
         this.mobileNumber = user.getMobileNumber();
         this.country = user.getCountry();
@@ -38,6 +40,9 @@ public class UserResponse {
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+
+    public User.Role getRole() { return role; }
+    public void setRole(User.Role role) { this.role = role; }
 
     public Integer getAge() { return age; }
     public void setAge(Integer age) { this.age = age; }

@@ -19,18 +19,21 @@ public class User {
     private String username;
 
     @NotBlank
-    @Size(max = 100)
+    @Size(max = 50)
     private String name;
 
     @NotBlank
-    @Size(max = 120)
+    @Size(max = 50)
     @Email
     @Column(unique = true)
     private String email;
 
     @NotBlank
-    @Size(max = 120)
+    @Size(max = 100)
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     private Integer age;
 
@@ -47,6 +50,10 @@ public class User {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    public enum Role {
+        USER, ADMIN
+    }
 
     public enum Gender {
         MALE, FEMALE, OTHER
@@ -112,6 +119,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public Integer getAge() {

@@ -23,6 +23,7 @@ public class SignupRequest {
     @Size(min = 6, max = 40)
     private String password;
 
+    private User.Role role;
     private Integer age;
     private String mobileNumber;
     private String country;
@@ -40,6 +41,9 @@ public class SignupRequest {
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+
+    public User.Role getRole() { return role; }
+    public void setRole(User.Role role) { this.role = role; }
 
     public Integer getAge() { return age; }
     public void setAge(Integer age) { this.age = age; }
