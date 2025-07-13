@@ -1,10 +1,10 @@
 package com.userauth.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name = "users")
@@ -28,45 +28,38 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    @NotBlank
-    @Size(max = 100)
-    private String password;
-
-    @Enumerated(EnumType.STRING)
-    private Role role;
-
-    private Integer age;
-
     @Size(max = 15)
     private String mobileNumber;
 
-    @Size(max = 50)
-    private String country;
+    @NotBlank
+    @Size(max = 100)
+    @JsonIgnore
+    private String password;
 
+    @NotNull(message = "Role must be specified")
     @Enumerated(EnumType.STRING)
-    private Gender gender;
+    private Role role;
+
+    public enum Role {
+        USER,
+        ADMIN
+    }
 
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
-    public enum Role {
-        USER, ADMIN
-    }
-
-    public enum Gender {
-        MALE, FEMALE, OTHER
-    }
 
     // Constructors
     public User() {}
 
-    public User(String username, String name, String email, String password) {
+    public User(String username, String name, String email, String password, String role) {
         this.username = username;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.role = Role.valueOf(role.toUpperCase());
     }
 
     @PrePersist
@@ -84,7 +77,6 @@ public class User {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -92,7 +84,6 @@ public class User {
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -100,7 +91,6 @@ public class User {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -108,7 +98,6 @@ public class User {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -116,7 +105,6 @@ public class User {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -124,47 +112,20 @@ public class User {
     public Role getRole() {
         return role;
     }
-
     public void setRole(Role role) {
         this.role = role;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 
     public String getMobileNumber() {
         return mobileNumber;
     }
-
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
     }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
-
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
@@ -172,7 +133,6 @@ public class User {
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
-
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }

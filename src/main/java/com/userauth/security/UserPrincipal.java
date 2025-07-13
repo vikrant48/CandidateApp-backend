@@ -1,24 +1,32 @@
 package com.userauth.security;
 
 import com.userauth.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 public class UserPrincipal implements UserDetails {
-    private Long id;
-    private String username;
-    private String email;
+    private final Long id;
+    private final String username;
+    private final String email;
+    private final String role;
+
+    @JsonIgnore
     private String password;
 
-    public UserPrincipal(Long id, String username, String email, String password) {
+    public UserPrincipal(Long id, String username, String email, String password, String role) {
         this.id = id;
         this.username = username;
         this.email = email;
+        this.role = role;
         this.password = password;
+
+
     }
 
     public static UserPrincipal create(User user) {
@@ -26,7 +34,9 @@ public class UserPrincipal implements UserDetails {
                 user.getId(),
                 user.getUsername(),
                 user.getEmail(),
-                user.getPassword()
+                user.getPassword(),
+                user.getRole().name()
+
         );
     }
 
@@ -36,6 +46,10 @@ public class UserPrincipal implements UserDetails {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getRole() {
+        return role;
     }
 
     @Override
@@ -50,7 +64,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.emptyList();
+        return List.of(new SimpleGrantedAuthority("ROLE_" + role));
     }
 
     @Override

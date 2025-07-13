@@ -9,10 +9,7 @@ public class UserResponse {
     private String name;
     private String email;
     private User.Role role;
-    private Integer age;
     private String mobileNumber;
-    private String country;
-    private User.Gender gender;
     private LocalDateTime createdAt;
 
     public UserResponse(User user) {
@@ -21,10 +18,7 @@ public class UserResponse {
         this.name = user.getName();
         this.email = user.getEmail();
         this.role = user.getRole();
-        this.age = user.getAge();
         this.mobileNumber = user.getMobileNumber();
-        this.country = user.getCountry();
-        this.gender = user.getGender();
         this.createdAt = user.getCreatedAt();
     }
 
@@ -44,17 +38,8 @@ public class UserResponse {
     public User.Role getRole() { return role; }
     public void setRole(User.Role role) { this.role = role; }
 
-    public Integer getAge() { return age; }
-    public void setAge(Integer age) { this.age = age; }
-
     public String getMobileNumber() { return mobileNumber; }
     public void setMobileNumber(String mobileNumber) { this.mobileNumber = mobileNumber; }
-
-    public String getCountry() { return country; }
-    public void setCountry(String country) { this.country = country; }
-
-    public User.Gender getGender() { return gender; }
-    public void setGender(User.Gender gender) { this.gender = gender; }
 
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }

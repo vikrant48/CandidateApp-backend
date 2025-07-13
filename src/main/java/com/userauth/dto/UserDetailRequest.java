@@ -1,5 +1,7 @@
 package com.userauth.dto;
 
+import com.userauth.entity.User;
+import com.userauth.entity.UserDetail;
 import jakarta.validation.constraints.*;
 
 import java.util.Date;
@@ -12,16 +14,14 @@ public class UserDetailRequest {
     @Size(max = 50)
     private String lastName;
 
-    @Email
-    @NotBlank
-    private String email;
-
-    @NotBlank
-    private String mobileNumber;
-
+    private String alternateEmail;
+    private String alternateMobileNumber;
     private Date DOB;
-
+    private Integer age;
+    private UserDetail.Gender gender;
     private String address;
+
+    private  Boolean isActive = true;
 
     @Size(max = 11)
     private String panNumber;
@@ -29,12 +29,17 @@ public class UserDetailRequest {
     @Size(max = 12)
     private String aadhaarNumber;
 
-    private String resumePath;
+    private String bloodGroup;
+    private String emergencyContactName;
+    private String emergencyContactNumber;
+    private String emergencyContactRelation;
+
+
+    //getters and setters
 
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -42,47 +47,58 @@ public class UserDetailRequest {
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getAlternateEmail() {
+        return alternateEmail;
+    }
+    public void setAlternateEmail(String alternateEmail) {
+        this.alternateEmail = alternateEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getAlternateMobileNumber() {
+        return alternateMobileNumber;
     }
-
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
+    public void setAlternateMobileNumber(String alternateMobileNumber) {
+        this.alternateMobileNumber = alternateMobileNumber;
     }
 
     public Date getDOB() {
         return DOB;
     }
-
     public void setDOB(Date DOB) {
         this.DOB = DOB;
     }
 
+    public Integer getAge() {
+        return age;
+    }
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public UserDetail.Gender getGender() { return gender; }
+    public void setGender(UserDetail.Gender gender) { this.gender = gender; }
+
     public String getAddress() {
         return address;
     }
-
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 
     public String getPanNumber() {
         return panNumber;
     }
-
     public void setPanNumber(String panNumber) {
         this.panNumber = panNumber;
     }
@@ -90,16 +106,36 @@ public class UserDetailRequest {
     public String getAadhaarNumber() {
         return aadhaarNumber;
     }
-
     public void setAadhaarNumber(String aadhaarNumber) {
         this.aadhaarNumber = aadhaarNumber;
     }
 
-    public String getResumePath() {
-        return resumePath;
+    public String getBloodGroup() {
+        return bloodGroup;
+    }
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
     }
 
-    public void setResumePath(String resumePath) {
-        this.resumePath = resumePath;
+    public String getEmergencyContactName() {
+        return emergencyContactName;
+    }
+    public void setEmergencyContactName(String emergencyContactName) {
+        this.emergencyContactName = emergencyContactName;
+    }
+
+    public String getEmergencyContactNumber() {
+        return emergencyContactNumber;
+    }
+    public void setEmergencyContactNumber(String emergencyContactNumber) {
+        this.emergencyContactNumber = emergencyContactNumber;
+    }
+
+    public String getEmergencyContactRelation() {
+        return emergencyContactRelation;
+    }
+
+    public void setEmergencyContactRelation(String emergencyContactRelation) {
+        this.emergencyContactRelation = emergencyContactRelation;
     }
 }

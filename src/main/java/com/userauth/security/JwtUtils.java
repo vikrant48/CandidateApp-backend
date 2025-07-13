@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class JwtUtils {
@@ -27,6 +28,7 @@ public class JwtUtils {
 
         return Jwts.builder()
                 .setSubject((userPrincipal.getUsername()))
+                .claim("roles", List.of("ROLE_" + userPrincipal.getRole()))
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
                 .signWith(key(), SignatureAlgorithm.HS256)
@@ -40,6 +42,18 @@ public class JwtUtils {
     public String getUserNameFromJwtToken(String token) {
         return Jwts.parserBuilder().setSigningKey(key()).build()
                 .parseClaimsJws(token).getBody().getSubject();
+    }
+
+    @SuppressWarnings("unchecked")
+    public String getRoleFromJwtToken(String token) {
+        Object rolesObject = Jwts.parserBuilder().setSigningKey(key()).build()
+                .parseClaimsJws(token).getBody().get("roles");
+
+        if (rolesObject instanceof List<?> rolesList && !rolesList.isEmpty()) {
+            return rolesList.get(0).toString(); // Return first role
+        }
+
+        return null;
     }
 
     public boolean validateJwtToken(String authToken) {
