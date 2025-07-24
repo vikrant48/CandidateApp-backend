@@ -62,9 +62,9 @@ public class UserDetailController {
         detail.setAlternateEmail(req.getAlternateEmail());
         detail.setAlternateMobileNumber(req.getAlternateMobileNumber());
         detail.setDOB(req.getDOB());
-        detail.setAge(req.getAge());
         detail.setGender(req.getGender());
         detail.setAddress(req.getAddress());
+        detail.setCountry(req.getCountry());
         detail.setIsActive(req.getIsActive());
         detail.setPanNumber(req.getPanNumber());
         detail.setAadhaarNumber(req.getAadhaarNumber());

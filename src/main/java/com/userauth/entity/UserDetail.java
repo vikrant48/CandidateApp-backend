@@ -9,11 +9,15 @@ import com.userauth.dto.UserDetailRequest;
 import com.userauth.entity.User;
 
 @Entity
-@Table(name = "userDetails")
+@Table(name = "user_detail")
 public class UserDetail {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId  // This maps the ID of UserDetail to the ID of the associated User
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    private User user;
 
     @NotBlank
     @Column(nullable = false)
@@ -22,16 +26,6 @@ public class UserDetail {
 
     @Size(max = 50)
     private String lastName;
-
-//    @Email
-//    @NotBlank
-//    private String email;
-//
-//    private String mobileNumber;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false, unique = true)
-    private User user;
 
     @Column(nullable = false)
     private Boolean isActive = true;
@@ -51,9 +45,6 @@ public class UserDetail {
     private String emergencyContactNumber;
     private String emergencyContactRelation;
 
-    @Size(max = 50)
-    private String country;
-
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
@@ -62,8 +53,9 @@ public class UserDetail {
     }
 
     private String address;
+    private String country;
 
-    @Column(length = 11)
+    @Column(length = 10)
     private String panNumber;
 
     @Column(length = 12)
@@ -75,13 +67,11 @@ public class UserDetail {
         this.user = user;
         this.firstName = request.getFirstName();
         this.lastName = request.getLastName();
-//        this.email = request.getEmail();
-//        this.mobileNumber = request.getMobileNumber();
         this.isActive = request.getIsActive();
         this.DOB = request.getDOB();
-        this.age = request.getAge();
         this.gender = request.getGender();
         this.address = request.getAddress();
+        this.country = request.getCountry();
         this.panNumber = request.getPanNumber();
         this.aadhaarNumber = request.getAadhaarNumber();
         this.alternateEmail = request.getAlternateEmail();
@@ -121,12 +111,6 @@ public class UserDetail {
         this.lastName = lastName;
     }
 
-//    public String getEmail() { return email; }
-//    public void setEmail(String email) { this.email = email; }
-//
-//    public String getMobileNumber() { return mobileNumber; }
-//    public void setMobileNumber(String mobileNumber) { this.mobileNumber = mobileNumber; }
-
     public Boolean getIsActive() {
         return isActive;
     }
@@ -162,13 +146,6 @@ public class UserDetail {
         this.age = age;
     }
 
-    public String getCountry() {
-        return country;
-    }
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public Gender getGender() {
         return gender;
     }
@@ -181,6 +158,13 @@ public class UserDetail {
     }
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getPanNumber() {

@@ -9,11 +9,10 @@ public class UserDetailResponse {
     private Long id;
     private String firstName;
     private String lastName;
-//    private String email;
-//    private String mobileNumber;
     private Date DOB;
     private Integer age;
     private String address;
+    private String country;
     private Boolean isActive;
     private String panNumber;
     private String aadhaarNumber;
@@ -24,9 +23,9 @@ public class UserDetailResponse {
     private String emergencyContactNumber;
     private String emergencyContactRelation;
     private String gender;
-    private String country;
 
-    private User user;
+
+    private final User user;
 
     public UserDetailResponse(UserDetail detail) {
         this.user = detail.getUser();
@@ -34,11 +33,10 @@ public class UserDetailResponse {
         this.id = detail.getId();
         this.firstName = detail.getFirstName();
         this.lastName = detail.getLastName();
-//        this.email = detail.getEmail();
-//        this.mobileNumber = detail.getMobileNumber();
         this.DOB = detail.getDOB();
         this.age = detail.getAge();
         this.address = detail.getAddress();
+        this.country = detail.getCountry();
         this.isActive = detail.getIsActive();
         this.panNumber = detail.getPanNumber();
         this.aadhaarNumber = detail.getAadhaarNumber();
@@ -49,7 +47,6 @@ public class UserDetailResponse {
         this.emergencyContactNumber = detail.getEmergencyContactNumber();
         this.emergencyContactRelation = detail.getEmergencyContactRelation();
         this.gender = detail.getGender() != null ? detail.getGender().name() : null;
-        this.country = detail.getCountry();
     }
 
     public String getEmail() {
@@ -70,12 +67,6 @@ public class UserDetailResponse {
 
     public String getLastName() { return lastName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
-
-//    public String getEmail() { return email; }
-//    public void setEmail(String email) { this.email = email; }
-//
-//    public String getMobileNumber() { return mobileNumber; }
-//    public void setMobileNumber(String mobileNumber) { this.mobileNumber = mobileNumber; }
 
     public Date getDOB() { return DOB; }
     public void setDOB(Date DOB) { this.DOB = DOB; }

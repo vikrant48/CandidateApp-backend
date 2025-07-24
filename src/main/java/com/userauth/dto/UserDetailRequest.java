@@ -17,9 +17,9 @@ public class UserDetailRequest {
     private String alternateEmail;
     private String alternateMobileNumber;
     private Date DOB;
-    private Integer age;
     private UserDetail.Gender gender;
     private String address;
+    private String country;
 
     private  Boolean isActive = true;
 
@@ -72,21 +72,18 @@ public class UserDetailRequest {
         this.DOB = DOB;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     public UserDetail.Gender getGender() { return gender; }
     public void setGender(UserDetail.Gender gender) { this.gender = gender; }
 
-    public String getAddress() {
-        return address;
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
+
+    public String getCountry() {
+        return country;
     }
-    public void setAddress(String address) {
-        this.address = address;
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public Boolean getIsActive() {
