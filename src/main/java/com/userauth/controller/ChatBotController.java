@@ -4,6 +4,7 @@ import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,8 @@ import java.util.Map;
 @RequestMapping("/api/ai")
 public class ChatBotController {
 
-    private final String GEMINI_API_KEY = "AIzaSyBh-4SBv4-NDbqm534pyAjzPX5cSwoFCmE";
+    @Value("${gemini.api.key}")
+    private String GEMINI_API_KEY;
 
     @GetMapping("/check-key")
     public ResponseEntity<String> checkApiKey() {
