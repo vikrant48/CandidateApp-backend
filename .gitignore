@@ -1,37 +1,50 @@
-HELP.md
+# Maven build output
 target/
-.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### STS ###
+# Maven wrapper files
+.mvn/wrapper/maven-wrapper.jar
+
+# Build system files
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Spring Tool Suite (STS)
 .apt_generated
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
-.sts4-cache
+.sts4-cache/
 
-### IntelliJ IDEA ###
-.idea
+# IntelliJ IDEA
+.idea/
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### VS Code ###
+# VS Code
 .vscode/
 
-# Ignore application.properties with secrets
+# System files
+.DS_Store
+Thumbs.db
+
+# Application secrets
 src/main/resources/application.properties
 
+# Optional: allow sample config file for reference
+!src/main/resources/application-sample.properties
+
+# Optional: ignore log files
+*.log
